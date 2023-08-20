@@ -1,0 +1,44 @@
+
+.revenu_container{
+    min-width: 30px;
+    min-height: 10px;
+    background-color: white;
+}
+
+.revenu_header_line{
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+}
+.revenu_title{
+    width: 60%;
+}
+.revenu_value{
+    width: 30%;
+    text-align: right;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.revenu_header_line input::-webkit-outer-spin-button,
+.revenu_header_line input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.revenu_repetitions{
+    word-wrap: break-word;
+}
+
+.revenu_settings{
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.settings_visible{
+    max-height: 500px;
+}
+.settings_not_visible{
+    max-height: 0;
+}
+

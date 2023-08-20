@@ -1,0 +1,77 @@
+
+.time_picker{
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    min-width: 100px;
+    min-height: 20px;
+}
+.time-selectors{
+    position: absolute;
+    width: 45%;
+    height: 100%;
+}
+.hour_selector{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.minute_selector{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.time-selectors select{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: none;
+}
+.time-selectors select:focus{
+    outline: none;
+}
+.time-separator{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-60%);
+}
+
+/*----------------------------------------------------*/
+.interval_picker{
+    display: flex;
+    justify-content: space-between;
+}
+.interval-selectors{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    transition: 0.5s;
+}
+.interval-selectors select{
+    width: 100%;
+    border: none;
+    text-align: center;
+    background-color: #00000000;
+}
+.interval-selectors input{
+    width: 100%;
+    border: none;
+    text-align: center;
+    background-color: #00000000;
+}
+.interval-selectors select:focus, .interval-selectors input:focus{
+    outline: none;
+}
+
+.width_zero{
+    width: 0% !important;
+}
+.width_fifty{
+    width: 50% !important;
+}
+.width_full{
+    width: 100% !important;
+}
