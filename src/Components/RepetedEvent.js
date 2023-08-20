@@ -15,16 +15,13 @@ export default function RepeatedEvent(props){
         { from: new Date(2023, 1, 1), to: yesterday }
     ];
 
-    useEffect(() => {
-      console.log(time);
-    }, [time])
     
     return (
         <>
           {props.intervalpicker && (
             <>
               <div className="repeated_event_headers">Interval :</div>
-              <IntervalPicker/>
+              <IntervalPicker setIntervalType={props.setIntervalType} setNumberOfDays={props.setNumberOfDays} setWeekDay={props.setWeekDay} setDayNumber={props.setDayNumber}/>
             </>
           )}
 
@@ -39,7 +36,14 @@ export default function RepeatedEvent(props){
                     }}
                     captionLayout="dropdown-buttons" fromYear={2023} toYear={2050}
                     selected={date}
-                    onSelect={setDate}
+                    onSelect={(date) => {
+                      if (props.setStartingDate) {
+                        props.setStartingDate(date);
+                        setDate(date);
+                      } else {
+                        setDate(date);
+                      }
+                    }}
                     weekStartsOn={1}
                     disabled={disabledDays}
                      
@@ -96,42 +100,64 @@ export function TimePicker(props) {
 }
 
 export function IntervalPicker(props){
-  const [interval, setInterval] = useState({"interval_type": "Jours", "interval_data": 1});
+  const [intervalType, setIntervalType] = useState("Every day");
+  const [numberOfDays, setNumberOfDays] = useState(1);
+  const [weekDay, setWeekDay] = useState("Monday");
+  const [dayNumber, setDayNumber] = useState(1);
 
-  // Event handlers to update the 'time' state
   const handleIntervalTypeChange = (event) => {
       const intervalType = event.target.value;
-      setInterval({"interval_type": intervalType, "interval_data": interval["interval_data"]});
+      setIntervalType(intervalType);
+      if (props.setIntervalType) {
+        props.setIntervalType(intervalType);
+      }
   };
 
   const handleIntervalValueChange = (event) => {
       const intervalData = event.target.value;
-      setInterval({"interval_type": interval["interval_type"], "interval_data": intervalData});
-  };
 
-  useEffect(() => {
-      console.log(interval)
-  }, [interval])
+      switch(intervalType){
+        case "Every X days":
+          setNumberOfDays(intervalData);
+          if (props.setNumberOfDays) {
+            props.setNumberOfDays(intervalData);
+          }
+          break;
+        case "Every week":
+          setWeekDay(intervalData);
+          if (props.setWeekDay) {
+            props.setWeekDay(intervalData);
+          }
+          break;
+        case "Every month":
+          setDayNumber(intervalData);
+          if (props.setDayNumber) {
+            props.setDayNumber(intervalData);
+          }
+          break;
+        default:
+          break;
+      }
+  };
 
   return(
       <>
           <div style={props.style} className="interval_picker">
-              <div className={`interval-selectors ${interval["interval_type"]==="X jours" ? "width_fifty" : "width_zero"}`}>
-                  <input value={interval["interval_data"]} onChange={handleIntervalValueChange} type='number' placeholder='00'/>
+              <div className={`interval-selectors ${intervalType==="Every X days" ? "width_fifty" : "width_zero"}`}>
+                  <input value={numberOfDays} onChange={handleIntervalValueChange} type='number' placeholder='00'/>
               </div>
 
-              <div className={`interval-selectors interval_type_selector ${interval["interval_type"]==="Jours" ? "width_full" : "width_fifty"}`}>
-                  <select name="type_d_intervalle" value={interval["interval_type"]} onChange={handleIntervalTypeChange}>
-                      <option value="X jours">Every X days</option>
-                      <option value="Jours">Every day</option>
-                      <option value="Semaines">Every week</option>
-                      <option value="Mois">Every month</option>
+              <div className={`interval-selectors interval_type_selector ${intervalType==="Every day" ? "width_full" : "width_fifty"}`}>
+                  <select name="type_d_intervale" value={intervalType} onChange={handleIntervalTypeChange}>
+                      <option value="Every day">Every day</option>
+                      <option value="Every X days">Every X days</option>
+                      <option value="Every week">Every week</option>
+                      <option value="Every month">Every month</option>
                   </select>
               </div>
               
-              <div className={`interval-selectors interval_data_selector ${interval["interval_type"]==="Mois" ? "width_fifty" : "width_zero"}`}>
-                  <select name="numero_du_mois" value={interval["interval_data"]} onChange={handleIntervalValueChange}>
-                      <option value="00">00</option>
+              <div className={`interval-selectors interval_data_selector ${intervalType==="Every month" ? "width_fifty" : "width_zero"}`}>
+                  <select name="numero_du_mois" value={dayNumber} onChange={handleIntervalValueChange}>
                       <option value="01">01</option>
                       <option value="02">02</option>
                       <option value="03">03</option>
@@ -166,15 +192,15 @@ export function IntervalPicker(props){
                   </select>
               </div>
 
-              <div className={`interval-selectors interval_data_selector ${interval["interval_type"]==="Semaines" ? "width_fifty" : "width_zero"}`}>
-                  <select name="jour_de_la_semaine" value={interval["interval_data"]} onChange={handleIntervalValueChange}>
-                      <option value="Lundi">Monday</option>
-                      <option value="Mardi">Tusday</option>
-                      <option value="Mercredi">Wednesday</option>
-                      <option value="Jeudi">Thursday</option>
-                      <option value="Vendredi">Friday</option>
-                      <option value="Samedi">Saturday</option>
-                      <option value="Dimanche">Sunday</option>
+              <div className={`interval-selectors interval_data_selector ${intervalType==="Every week" ? "width_fifty" : "width_zero"}`}>
+                  <select name="jour_de_la_semaine" value={weekDay} onChange={handleIntervalValueChange}>
+                      <option value="Monday">Monday</option>
+                      <option value="Tusday">Tusday</option>
+                      <option value="Wednesday">Wednesday</option>
+                      <option value="Thursday">Thursday</option>
+                      <option value="Friday">Friday</option>
+                      <option value="Saturday">Saturday</option>
+                      <option value="Sunday">Sunday</option>
                   </select>
               </div>
               

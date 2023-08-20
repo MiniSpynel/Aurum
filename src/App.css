@@ -1,5 +1,5 @@
 :root{
-  --background: #302f3b;
+  --background: #2c2b38;
   --background_dark : #22212F;
 
   --main1-hue : 35;
@@ -8,7 +8,7 @@
 
   --cards : #ffffff;
   --main1 : hsl(var(--main1-hue), var(--main1-saturation), var(--main1-lightness));
-  --main1-dark : hsl(var(--main1-hue), var(--main1-saturation), calc(var(--main1-lightness) - 4%));
+  --main1-dark : hsl(var(--main1-hue), var(--main1-saturation), calc(var(--main1-lightness) - 8%));
   --main1-light : hsl(calc(var(--main1-hue) - 5), var(--main1-saturation), calc(var(--main1-lightness) + 8%));
   --main1_transparent : hsla(var(--main1-hue), calc(var(--main1-saturation) - 20%), var(--main1-lightness), 0.1);
 
@@ -19,6 +19,14 @@
 
   --light_grey: rgb(197, 197, 197);
   --medium_grey: rgb(139, 139, 139);
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* width */
@@ -133,20 +141,27 @@
 }
 
 .interval_picker{
-  background-color: var(--light_grey);
+  background-color: var(--background_dark);
   padding: 5px 0;
   border-radius: 3px;
+  margin: 4px;
+  box-shadow: black 0 0 4px 0;
 }
 .interval-selectors input{
   background-color: var(--light_grey);
+  color: white;
 }
 .interval-selectors input::placeholder{
   color: black;
 }
 .interval-selectors select{
   background-color: var(--light_grey);
+  color: white;
 }
-
+select option {
+  background: var(--background_dark);
+  color: #fff;
+}
 
 .revenu_header_line .modifiable_value{
   font-weight: bold;
@@ -169,10 +184,11 @@
   --rdp-background-color-dark: #180270 !important;
   --rdp-outline: 2px solid var(--rdp-accent-color) !important;
   --rdp-outline-selected: 3px solid var(--rdp-accent-color) !important;
-  background-color: var(--light_grey);
+  background-color: var(--background_dark);
   border-radius: 5px;
   padding: 0.5em;
-  margin: 0px !important;
+  margin: 4px !important;
+  box-shadow: black 0 0 4px 0;
   width: auto !important;
 }
 .rdp-day_today:not(.rdp-day_outside):not(.rdp-day_selected) {
@@ -184,4 +200,10 @@
 }
 .rdp-month.rdp-caption_start.rdp-caption_end{
   width: 100%;
+}
+.rdp-head_cell{
+  color: var(--main1-dark);
+}
+.rdp-cell{
+  color: white;
 }
