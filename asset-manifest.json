@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Aurum/static/css/main.b1b2b5ae.css",
-    "main.js": "/Aurum/static/js/main.56c42626.js",
+    "main.css": "/Aurum/static/css/main.fbbfa73d.css",
+    "main.js": "/Aurum/static/js/main.22f275ce.js",
     "static/js/787.b8b20f38.chunk.js": "/Aurum/static/js/787.b8b20f38.chunk.js",
     "static/media/logo.svg": "/Aurum/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/Aurum/index.html",
-    "main.b1b2b5ae.css.map": "/Aurum/static/css/main.b1b2b5ae.css.map",
-    "main.56c42626.js.map": "/Aurum/static/js/main.56c42626.js.map",
+    "main.fbbfa73d.css.map": "/Aurum/static/css/main.fbbfa73d.css.map",
+    "main.22f275ce.js.map": "/Aurum/static/js/main.22f275ce.js.map",
     "787.b8b20f38.chunk.js.map": "/Aurum/static/js/787.b8b20f38.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b1b2b5ae.css",
-    "static/js/main.56c42626.js"
+    "static/css/main.fbbfa73d.css",
+    "static/js/main.22f275ce.js"
   ]
 }
